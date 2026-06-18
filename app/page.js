@@ -3,22 +3,22 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { supabase } from '../lib/supabase'
 
-/* ─── Itens do cardápio ─────────────────────────────────────── */
+/* âââ Itens do cardÃ¡pio âââââââââââââââââââââââââââââââââââââââ */
 const MENU_ITEMS = [
-  { id: 'cachorro_quente',  name: 'Cachorro Quente',                max: 4, emoji: '🌭' },
-  { id: 'milho_cozido',     name: 'Milho Cozido',                   max: 2, emoji: '🌽' },
-  { id: 'caldo_verde',      name: 'Caldo Verde',                    max: 1, emoji: '🥣' },
-  { id: 'pacoca',           name: 'Paçoca',                         max: 2, emoji: '🍫' },
-  { id: 'bolo_milho',       name: 'Bolo de Milho',                  max: 1, emoji: '🎂' },
-  { id: 'bolo_aipim',       name: 'Bolo de Aipim',                  max: 1, emoji: '🍰' },
-  { id: 'pastelzinho',      name: 'Mini Pastelzinho / Salgadinhos', max: 4, emoji: '🥟' },
-  { id: 'pipoca',           name: 'Pipoca',                         max: 2, emoji: '🍿' },
-  { id: 'quentao',          name: 'Quentão',                        max: 2, emoji: '🍵' },
-  { id: 'pao_queijo',       name: 'Pão de Queijo',                  max: 4, emoji: '🧀' },
-  { id: 'descartaveis',     name: 'Descartáveis',                   max: 2, emoji: '🥤', note: 'copos, pratos e guardanapos' },
+  { id: 'cachorro_quente',  name: 'Cachorro Quente',                max: 4, emoji: 'ð­' },
+  { id: 'milho_cozido',     name: 'Milho Cozido',                   max: 2, emoji: 'ð½' },
+  { id: 'caldo_verde',      name: 'Caldo Verde',                    max: 1, emoji: 'ð¥£' },
+  { id: 'pacoca',           name: 'PaÃ§oca',                         max: 2, emoji: 'ð«' },
+  { id: 'bolo_milho',       name: 'Bolo de Milho',                  max: 1, emoji: 'ð' },
+  { id: 'bolo_aipim',       name: 'Bolo de Aipim',                  max: 1, emoji: 'ð°' },
+  { id: 'pastelzinho',      name: 'Mini Pastelzinho / Salgadinhos', max: 4, emoji: 'ð¥' },
+  { id: 'pipoca',           name: 'Pipoca',                         max: 2, emoji: 'ð¿' },
+  { id: 'quentao',          name: 'QuentÃ£o',                        max: 2, emoji: 'ðµ' },
+  { id: 'pao_queijo',       name: 'PÃ£o de Queijo',                  max: 4, emoji: 'ð§' },
+  { id: 'descartaveis',     name: 'DescartÃ¡veis',                   max: 2, emoji: 'ð¥¤', note: 'copos, pratos e guardanapos' },
 ]
 
-/* ─── Paleta ────────────────────────────────────────────────── */
+/* âââ Paleta ââââââââââââââââââââââââââââââââââââââââââââââââââ */
 const C = {
   verde:       '#009c3b',
   verdeEsc:    '#007a2e',
@@ -36,7 +36,7 @@ const C = {
   textoSec:    '#5a6478',
 }
 
-/* ─── Componente de instruções ──────────────────────────────── */
+/* âââ Componente de instruÃ§Ãµes ââââââââââââââââââââââââââââââââ */
 function InstructionsCard() {
   const [open, setOpen] = useState(true)
   return (
@@ -52,25 +52,21 @@ function InstructionsCard() {
           padding: '13px 16px', color: C.azul, fontWeight: 700, fontSize: 14,
         }}
       >
-        <span>📖 Como funciona</span>
+        <span>ð Como funciona</span>
         <span style={{ fontSize: 12, color: C.azulMed, fontWeight: 400 }}>
-          {open ? 'fechar ▲' : 'ver ▼'}
+          {open ? 'fechar â²' : 'ver â¼'}
         </span>
       </button>
       {open && (
         <div style={{ padding: '0 16px 16px', fontSize: 13.5, color: C.textoSec, lineHeight: 1.65 }}>
-          <p style={{ margin: '0 0 10px' }}>
-            Cada convidado escolhe <strong style={{ color: C.azul }}>um item</strong> para trazer à festa —
-            é sua contribuição pra mesa! Itens com{' '}
-            <strong style={{ color: C.verde }}>mais de uma vaga</strong> podem ser escolhidos por mais
-            pessoas, já que a quantidade vai ser maior.
+          <p style={{ margin: '0 0 8px' }}>
+            SÃ³ colocar o nome e selecionar o que vocÃª vai levar :)
           </p>
-          <p style={{ margin: '0 0 10px' }}>
-            🍺 <strong style={{ color: C.azul }}>Bebidas</strong> podem ser pedidas por delivery na hora,
-            mas durante o jogo fica quase impossível — então já vá com seu drink garantido!
+          <p style={{ margin: '0 0 8px' }}>
+            Casal tem que selecionar separado, mas pode colocar na mesma coisa.
           </p>
           <p style={{ margin: 0, fontSize: 12.5, color: C.cinzaMed }}>
-            Coloque seu nome, escolha um item e confirme. Você pode trocar a qualquer momento antes da festa.
+            Qualquer coisa sÃ³ chamar! Fizemos assim para ficar fÃ¡cil para todo mundo.
           </p>
         </div>
       )}
@@ -78,7 +74,7 @@ function InstructionsCard() {
   )
 }
 
-/* ─── App principal ─────────────────────────────────────────── */
+/* âââ App principal âââââââââââââââââââââââââââââââââââââââââââ */
 export default function Home() {
   const [selections, setSelections] = useState([])   // array de linhas do Supabase
   const [name, setName] = useState('')
@@ -91,7 +87,7 @@ export default function Home() {
   const [resetConfirm, setResetConfirm] = useState(false)
   const channelRef = useRef(null)
 
-  /* ── Buscar dados ── */
+  /* ââ Buscar dados ââ */
   const fetchSelections = useCallback(async () => {
     const { data, error } = await supabase
       .from('selections')
@@ -103,7 +99,7 @@ export default function Home() {
     setLoading(false)
   }, [])
 
-  /* ── Realtime subscription ── */
+  /* ââ Realtime subscription ââ */
   useEffect(() => {
     fetchSelections()
 
@@ -118,7 +114,7 @@ export default function Home() {
     return () => { supabase.removeChannel(channel) }
   }, [fetchSelections])
 
-  /* ── Helpers ── */
+  /* ââ Helpers ââ */
   function getItemSelections(itemId) {
     return selections.filter(s => s.item_id === itemId)
   }
@@ -128,7 +124,7 @@ export default function Home() {
   const myItemName = myItemId ? MENU_ITEMS.find(i => i.id === myItemId)?.name : null
   const isConfirmed = myItemId === selectedItem && selectedItem !== null
 
-  /* ── Confirmar escolha ── */
+  /* ââ Confirmar escolha ââ */
   async function handleConfirm() {
     if (!enteredName || !selectedItem) return
     setSaving(true)
@@ -150,7 +146,7 @@ export default function Home() {
     setSaving(false)
   }
 
-  /* ── Cancelar escolha ── */
+  /* ââ Cancelar escolha ââ */
   async function handleRemove() {
     if (!myRow) return
     setSaving(true)
@@ -160,7 +156,7 @@ export default function Home() {
     setSaving(false)
   }
 
-  /* ── Reset geral ── */
+  /* ââ Reset geral ââ */
   async function handleReset() {
     setSaving(true)
     await supabase.from('selections').delete().neq('id', 0)
@@ -181,18 +177,18 @@ export default function Home() {
 
   const totalEscolhidos = selections.length
 
-  /* ── Loading ── */
+  /* ââ Loading ââ */
   if (loading) {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', background: C.branco }}>
         <div style={{ width: 40, height: 40, border: `4px solid ${C.cinza}`, borderTop: `4px solid ${C.verde}`, borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
-        <p style={{ color: C.verde, marginTop: 14, fontWeight: 600 }}>Carregando cardápio…</p>
+        <p style={{ color: C.verde, marginTop: 14, fontWeight: 600 }}>Carregando cardÃ¡pioâ¦</p>
         <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
       </div>
     )
   }
 
-  /* ── Render ── */
+  /* ââ Render ââ */
   return (
     <div style={{ fontFamily: "'Inter', system-ui, sans-serif", background: C.cinza, minHeight: '100vh' }}>
       <style>{`
@@ -208,7 +204,7 @@ export default function Home() {
         }
       `}</style>
 
-      {/* ═══ HEADER ═══ */}
+      {/* âââ HEADER âââ */}
       <div style={{
         background: `linear-gradient(145deg, ${C.azul} 0%, ${C.azulMed} 55%, #005f20 100%)`,
         padding: '30px 20px 36px',
@@ -220,9 +216,9 @@ export default function Home() {
         <div style={{ position: 'absolute', right: -60, top: -60, width: 220, height: 220, borderRadius: '50%', background: 'rgba(255,255,255,0.04)' }} />
         <div style={{ position: 'absolute', left: -40, bottom: -40, width: 160, height: 160, borderRadius: '50%', background: 'rgba(255,223,0,0.06)' }} />
 
-        <div style={{ fontSize: 44, marginBottom: 10, position: 'relative' }}>🇧🇷⚽🎪</div>
+        <div style={{ fontSize: 44, marginBottom: 10, position: 'relative' }}>ð§ð·â½</div>
         <h1 style={{ margin: '0 0 10px', fontSize: 24, fontWeight: 800, color: C.branco, letterSpacing: 0.5, position: 'relative' }}>
-          Cardápio da Festa
+          CardÃ¡pio
         </h1>
         <div style={{
           display: 'inline-flex', alignItems: 'center', gap: 8,
@@ -230,10 +226,9 @@ export default function Home() {
           padding: '6px 20px', borderRadius: 24, marginBottom: 10,
           position: 'relative', boxShadow: '0 3px 12px rgba(0,0,0,0.2)',
         }}>
-          Bra × Haiti · 21h30 · Grajaú
+          Bra Ã Haiti Â· 21h30 Â· GrajaÃº
         </div>
         <p style={{ margin: '8px 0 0', color: 'rgba(255,255,255,0.7)', fontSize: 12.5, letterSpacing: 0.5 }}>
-          Festa Junina • Copa Edition
         </p>
         {totalEscolhidos > 0 && (
           <div style={{
@@ -243,17 +238,17 @@ export default function Home() {
             fontSize: 12, fontWeight: 600,
             padding: '4px 14px', borderRadius: 20,
           }}>
-            {totalEscolhidos} {totalEscolhidos === 1 ? 'item confirmado' : 'itens confirmados'} até agora
+            {totalEscolhidos} {totalEscolhidos === 1 ? 'item confirmado' : 'itens confirmados'} atÃ© agora
           </div>
         )}
       </div>
 
-      {/* ═══ CONTEÚDO ═══ */}
+      {/* âââ CONTEÃDO âââ */}
       <div style={{ maxWidth: 740, margin: '0 auto', padding: '20px 14px 80px' }}>
 
         <InstructionsCard />
 
-        {/* Identificação */}
+        {/* IdentificaÃ§Ã£o */}
         {!enteredName ? (
           <div style={{
             background: C.branco, borderRadius: 14, padding: 20, marginBottom: 18,
@@ -261,7 +256,7 @@ export default function Home() {
             borderLeft: `4px solid ${C.verde}`,
           }}>
             <p style={{ fontWeight: 700, marginBottom: 12, color: C.azul, fontSize: 15, margin: '0 0 12px' }}>
-              Qual é o seu nome?
+              Qual Ã© o seu nome?
             </p>
             <input
               style={{
@@ -290,7 +285,7 @@ export default function Home() {
               onClick={handleEnter}
               disabled={name.trim().length < 2}
             >
-              Entrar →
+              Entrar â
             </button>
           </div>
         ) : (
@@ -299,10 +294,10 @@ export default function Home() {
             display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 8,
             border: `1.5px solid ${C.verde}`,
           }}>
-            <span style={{ fontWeight: 700, color: C.verdeEsc, fontSize: 14 }}>✅ {enteredName}</span>
+            <span style={{ fontWeight: 700, color: C.verdeEsc, fontSize: 14 }}>â {enteredName}</span>
             {myItemName && (
               <span style={{ color: C.verdeEsc, fontSize: 13 }}>
-                · vai trazer <strong>{myItemName}</strong>
+                Â· vai trazer <strong>{myItemName}</strong>
               </span>
             )}
             <button
@@ -317,7 +312,7 @@ export default function Home() {
           </div>
         )}
 
-        {/* Grid cardápio */}
+        {/* Grid cardÃ¡pio */}
         <div
           className="grid-cardapio"
           style={{
@@ -390,7 +385,7 @@ export default function Home() {
                         background: t.name === enteredName ? C.verde : C.azul,
                         color: C.branco,
                       }}>
-                        {t.name === enteredName ? '✅ Você' : t.name}
+                        {t.name === enteredName ? 'â VocÃª' : t.name}
                       </span>
                     ))}
                   </div>
@@ -408,7 +403,7 @@ export default function Home() {
                 )}
                 {isMine && (
                   <div style={{ position: 'absolute', top: 9, right: 9, background: C.verde, color: 'white', fontSize: 9, padding: '2px 7px', borderRadius: 9, fontWeight: 700 }}>
-                    Seu item ✓
+                    Seu item â
                   </div>
                 )}
               </div>
@@ -416,7 +411,7 @@ export default function Home() {
           })}
         </div>
 
-        {/* Barra de confirmação */}
+        {/* Barra de confirmaÃ§Ã£o */}
         {enteredName && (
           <div style={{
             position: 'sticky', bottom: 0,
@@ -441,12 +436,12 @@ export default function Home() {
                 onClick={handleConfirm}
                 disabled={saving}
               >
-                {saving ? 'Salvando…' : `✔ Confirmar: ${MENU_ITEMS.find(i => i.id === selectedItem)?.name}`}
+                {saving ? 'Salvandoâ¦' : `â Confirmar: ${MENU_ITEMS.find(i => i.id === selectedItem)?.name}`}
               </button>
             )}
             {isConfirmed && (
               <span style={{ color: C.verde, fontWeight: 700, fontSize: 14 }}>
-                ✅ Confirmado! Você vai trazer <strong>{myItemName}</strong>
+                â Confirmado! VocÃª vai trazer <strong>{myItemName}</strong>
               </span>
             )}
             {myRow && (
@@ -458,12 +453,12 @@ export default function Home() {
                 onClick={handleRemove}
                 disabled={saving}
               >
-                ✕ Cancelar escolha
+                â Cancelar escolha
               </button>
             )}
             {!selectedItem && !myRow && (
               <p style={{ color: C.cinzaMed, fontSize: 13, margin: 0 }}>
-                👆 Toque num item para escolher o que vai trazer
+                ð Toque num item para escolher o que vai trazer
               </p>
             )}
           </div>
@@ -476,7 +471,7 @@ export default function Home() {
           borderLeft: `4px solid ${C.azul}`,
         }}>
           <h3 style={{ margin: '0 0 14px', color: C.azul, fontSize: 15, fontWeight: 700 }}>
-            Resumo do cardápio
+            Resumo do cardÃ¡pio
           </h3>
           {MENU_ITEMS.map(item => {
             const taken = getItemSelections(item.id)
@@ -492,7 +487,7 @@ export default function Home() {
                   {taken.length}/{item.max}
                 </span>
                 <span style={{ fontSize: 12, color: C.textoSec }}>
-                  {taken.length > 0 ? taken.map(t => t.name).join(', ') : '—'}
+                  {taken.length > 0 ? taken.map(t => t.name).join(', ') : 'â'}
                 </span>
               </div>
             )
@@ -506,12 +501,12 @@ export default function Home() {
               style={{ background: 'none', border: 'none', color: C.cinzaMed, fontSize: 11, cursor: 'pointer', textDecoration: 'underline' }}
               onClick={() => setShowReset(true)}
             >
-              ⚙ Área admin (limpar dados de teste)
+              â Ãrea admin (limpar dados de teste)
             </button>
           ) : (
             <div style={{ background: '#fff5f5', border: '1.5px solid #ffb3b3', borderRadius: 12, padding: 16, display: 'inline-block', maxWidth: 380 }}>
               <p style={{ margin: '0 0 12px', fontSize: 13, color: '#c0392b', fontWeight: 600 }}>
-                ⚠️ Isso vai apagar todas as escolhas de todos os convidados.
+                â ï¸ Isso vai apagar todas as escolhas de todos os convidados.
               </p>
               {!resetConfirm ? (
                 <div style={{ display: 'flex', gap: 8, justifyContent: 'center' }}>
@@ -525,7 +520,7 @@ export default function Home() {
               ) : (
                 <div style={{ display: 'flex', gap: 8, justifyContent: 'center' }}>
                   <button style={{ background: '#8b0000', color: 'white', border: 'none', borderRadius: 8, padding: '8px 16px', fontSize: 13, cursor: 'pointer', fontWeight: 700 }} onClick={handleReset} disabled={saving}>
-                    {saving ? 'Limpando…' : 'Confirmar reset'}
+                    {saving ? 'Limpandoâ¦' : 'Confirmar reset'}
                   </button>
                   <button style={{ background: 'white', border: '1px solid #ccc', borderRadius: 8, padding: '8px 14px', fontSize: 13, cursor: 'pointer' }} onClick={() => { setResetConfirm(false); setShowReset(false) }}>
                     Voltar
@@ -537,7 +532,7 @@ export default function Home() {
         </div>
 
         <p style={{ textAlign: 'center', fontSize: 11, color: C.cinzaMed, marginTop: 16 }}>
-          Atualiza em tempo real via Supabase · {lastUpdated?.toLocaleTimeString('pt-BR')} ·{' '}
+          Atualiza em tempo real via Supabase Â· {lastUpdated?.toLocaleTimeString('pt-BR')} Â·{' '}
           <button style={{ background: 'none', border: 'none', color: C.verde, cursor: 'pointer', fontSize: 11, textDecoration: 'underline' }} onClick={fetchSelections}>
             atualizar agora
           </button>
