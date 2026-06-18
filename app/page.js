@@ -60,13 +60,15 @@ function InstructionsCard() {
       {open && (
         <div style={{ padding: '0 16px 16px', fontSize: 13.5, color: C.textoSec, lineHeight: 1.65 }}>
           <p style={{ margin: '0 0 8px' }}>
-            Só colocar o nome e selecionar o que vocà vai levar :)
+            Só colocar o nome e selecionar o que você vai levar :)
           </p>
           <p style={{ margin: '0 0 8px' }}>
             Casal tem que selecionar separado, mas pode colocar na mesma coisa.
           </p>
           <p style={{ margin: 0, fontSize: 12.5, color: C.cinzaMed }}>
-            Qualquer coisa só chamar! Fizemos assim para ficar fácil para todo mundo.
+            Qualquer coisa só chamar! Fizemos assim para ficar mais fácil para todo mundo.
+
+              
           </p>
         </div>
       )}
